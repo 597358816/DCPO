@@ -102,7 +102,7 @@ pip install -e .
 pip install tensorboard
 cd example
 bash qwen-math-7b-DCPO.sh
-
+```
 ## Declaration
 
 AI was used only for translation and language polishing in the paper.
