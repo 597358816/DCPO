@@ -45,13 +45,43 @@ on selected contest benchmarks for Qwen3-4B.
 
 ### Main results across three backbones (7-benchmark suites)
 
-The table below summarizes the **average** score across each paper’s 7-benchmark suite for the corresponding backbone.
 
-| Backbone | Base | +GRPO | +AEPO | +DCPO |
-|---|---:|---:|---:|---:|
-| Qwen2.5-7B | 36.24 | 47.70 | 49.57 | **50.94** |
-| Qwen2.5-Math-7B | 32.56 | 51.60 | 53.87 | **55.77** |
-| Qwen3-4B | 34.33 | 44.63 | 45.31 | **46.41** |
+**Qwen2.5-7B (7-benchmark suite)**
+
+| Method | AIME24 | AIME25 | AMC | GSM8K | MATH | Minerva | Olympiad | Average |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Qwen2.5-7B | 7.91 | 5.31 | 36.2 | 88.5 | 64.4 | 22.0 | 29.3 | 36.24 |
+| +GRPO | 17.1 | 7.60 | 65.8 | 92.3 | 75.6 | 36.8 | 38.8 | 47.70 |
+| +Entropy-Reg | 13.6 | 8.85 | 67.4 | 92.3 | 76.8 | 35.5 | 39.1 | 47.65 |
+| +Entropy-Adv | 14.8 | 8.23 | 67.3 | 91.9 | 76.6 | 38.2 | 37.5 | 47.79 |
+| +AEPO | 17.5 | 11.4 | 69.3 | 92.9 | 78.0 | 37.8 | 40.2 | 49.57 |
+| +DCPO | 18.8 | 15.3 | 69.9 | 93.0 | 79.2 | 38.2 | 42.2 | **50.94** |
+| Δ vs. GRPO | +1.7 | +7.7 | +4.1 | +0.7 | +3.6 | +1.4 | +3.4 | +3.24 (+28.3%) |
+
+**Qwen2.5-Math-7B (7-benchmark suite)**
+
+| Method | AIME24 | AIME25 | AMC | GSM8K | MATH | Minerva | Olympiad | Average |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Qwen2.5-Math-7B | 15.5 | 7.81 | 42.1 | 65.4 | 59.4 | 11.0 | 26.7 | 32.56 |
+| +GRPO | 32.1 | 11.0 | 72.4 | 88.7 | 80.6 | 34.6 | 41.8 | 51.60 |
+| +Entropy-Reg | 31.4 | 10.1 | 74.3 | 87.0 | 80.4 | 35.7 | 40.4 | 51.10 |
+| +Entropy-Adv | 32.1 | 11.4 | 72.1 | 87.8 | 80.4 | 37.5 | 42.1 | 51.76 |
+| +AEPO | 36.4 | 12.6 | 74.8 | 89.5 | 81.6 | 39.0 | 43.0 | 53.87 |
+| +DCPO | 35.2 | 17.8 | 76.3 | 92.0 | 82.0 | 43.4 | 43.7 | **55.77** |
+| Δ vs. GRPO | +3.1 | +6.8 | +3.9 | +3.3 | +1.4 | +8.8 | +1.9 | +4.17 (+21.9%) |
+
+**Qwen3-4B (7-benchmark suite)**
+
+| Method | AIME24 | AIME25 | HMMT25 | Minerva | Olympiad | GPQA diamond | MMLU pro | Average |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Qwen3-4B | 36.4 | 22.7 | 13.0 | 42.3 | 47.2 | 6.06 | 72.67 | 34.33 |
+| +GRPO | 52.9 | 41.5 | 27.1 | 46.7 | 60.0 | 10.1 | 74.1 | 44.63 |
+| +Entropy-Reg | 52.4 | 42.6 | 25.3 | 46.3 | 60.1 | 10.6 | 74.1 | 44.48 |
+| +Entropy-Adv | 51.6 | 41.7 | 25.5 | 46.0 | 58.4 | 10.6 | 74.8 | 44.08 |
+| +AEPO | 54.5 | 43.7 | 26.3 | 47.8 | 60.9 | 10.6 | 73.9 | 45.31 |
+| +DCPO | 56.6 | 42.7 | 28.8 | 48.2 | 61.4 | 11.1 | 76.1 | **46.41** |
+| Δ vs. GRPO | +3.7 | +1.2 | +1.7 | +1.5 | +1.4 | +1.0 | +2.0 | +1.78 (+17.2%) |
+|
 
 ### Selected per-benchmark improvements over GRPO (DCPO vs. GRPO)
 
@@ -64,9 +94,13 @@ Representative gains highlighted in the paper include:
 
 On contest benchmarks with Qwen3-4B:
 
-| Pass@128 | AIME24 | AIME25 | HMMT25 |
+| Method | AIME24 | AIME25 | HMMT25 |
 |---|---:|---:|---:|
+| Qwen3-4B | 76.7 | 63.3 | 60.0 |
 | +GRPO | 83.3 | 76.7 | 66.7 |
+| +Entropy-Reg | 83.3 | 73.3 | 66.7 |
+| +Entropy-Adv | 83.3 | 73.3 | 70.0 |
+| +AEPO | 83.3 | 76.7 | 66.7 |
 | **+DCPO** | **86.7** | **80.0** | **73.3** |
 
 ### Ablations: what is necessary for stable exploration?
@@ -79,12 +113,15 @@ performance by **3.9–4.4** points relative to the full DCPO setting (55.77 ave
 Varying \(\mathcal{H}_0\) shows that **moderate exploration** achieves the best overall average score, while overly aggressive
 exploration reduces the average.
 
-| Setting | Avg |
-|---|---:|
-| DCPO, $\(\mathcal{H}_0 = 0.25\)$ | **55.77** |
-| DCPO, $\(\mathcal{H}_0 = 0.50\)$ | 55.27 |
-| DCPO, $\(\mathcal{H}_0 = 0.75\)$ | 54.21 |
-| DCPO, $\(\mathcal{H}_0 = 1.00\)$ | 52.43 |
+### Exploration level control 
+
+| Setting | AIME24×32 | AIME25×32 | AMC×32 | GSM8K | MATH | Minerva | Olympiad | Avg |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| DCPO, $\mathcal{H}_0 = 0.25$ | 35.2 | 17.8 | 76.3 | 92.0 | 82.0 | 43.4 | 43.7 | **55.77** |
+| DCPO, $\mathcal{H}_0 = 0.50$ | 36.4 | 16.7 | 78.5 | 92.0 | 81.6 | 43.9 | 38.8 | 55.27 |
+| DCPO, $\mathcal{H}_0 = 0.75$ | 34.5 | 15.6 | 78.5 | 91.7 | 80.5 | 42.5 | 36.2 | 54.21 |
+| DCPO, $\mathcal{H}_0 = 1.00$ | 32.4 | 14.9 | 74.9 | 90.8 | 78.7 | 41.2 | 34.1 | 52.43 |
+
 
 ---
 ## Requirements
