@@ -91,8 +91,8 @@ exploration reduces the average.
 ### Software
 Install via pip:
 ```bash
-conda create -n AEPO python=3.11
-conda activate AEPO
+conda create -n DCPO python=3.11
+conda activate DCPO
 git clone https://github.com/597358816/AEPO.git
 cd AEPO
 pip install torch==2.6.0 torchaudio==2.6.0 torchvision==0.21.0 vllm==0.8.3 transformers==4.51.2 
